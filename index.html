@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Geheime Seite :O</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    </head>
+
+    
+
+    <body>
+        <h1>Bitte Geheimschlüssel eingeben...</h1>
+
+        <br>
+
+        <!-- "this" zeigt auf das Formular -->
+        <div>
+        <form>
+            <label>Schlüssel: </label>
+            <input type="text" id="key" name="key">
+        </form>
+
+        <br>
+
+        <br>
+
+        <p>Geheime Nachricht: <span id="decrypted">test</span></p>
+        </div>
+        
+        <script>
+            let encrypted = "U2FsdGVkX19ma6EJXZ2qENQmRCR3yejOUWrwena5MwIHdIrPqvnRvSA566a3qiuKbgGoq0YbUb4Zo+WAnnEa9TDSZvvdC5sLbUlncc2tkgP8G78wNQ75p+imWEQH3odI/pbEp83uq7tlleSvq0FPG7ULBaPaMdIPmKiQ7LkWal58ZWL98Mlgg29OlOmpvxe2Dm7xRU1CUzgwb9m//Cer6EBAEc51T1NHZ62CxghytK5WJijg28Y8Jz1Au1sNoU8wIuBklx/BgPSHF4QfhzDmJltWX9cgpzYWebi7tPF+KZ0=";
+
+            // Span element storing encrypted value
+            document.getElementById("decrypted").textContent = encrypted;
+
+            let key = window.location.search.substr(1);
+    
+            // Schlüssel existiert
+            if(key != "") {
+                
+                // Nimmt den genauen schlüssel (ohne "key=")
+                key = key.substring(4, key.length);
+    
+                let decrypted = CryptoJS.AES.decrypt(encrypted, key);
+
+                alert(decrypted.toString(CryptoJS.enc.Utf8));
+
+                document.getElementById("decrypted").textContent = decrypted.toString(CryptoJS.enc.Utf8);            
+            }
+
+            else {
+                document.getElementById("decrypted").style.fontSize = "40%";
+            }
+            
+        </script>
+
+    </body>
+</html>
