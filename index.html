@@ -50,13 +50,11 @@
     
                 let decrypted = CryptoJS.AES.decrypt(encrypted, key);
 
-                alert(decrypted.toString(CryptoJS.enc.Utf8));
-
                 document.getElementById("decrypted").textContent = decrypted.toString(CryptoJS.enc.Utf8);            
             }
 
             else {
-                document.getElementById("decrypted").textContent = "Noch verschlüsselt..."
+                document.getElementById("decrypted").textContent = "Noch verschlüsselt...";
             }
             
         </script>
